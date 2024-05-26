@@ -6,7 +6,7 @@
             <p id="money-plus"
                 class="money plus"
             >
-                $+0.00
+                ${{ income }}
             </p>
         </div>
         <!-- expense category -->
@@ -16,8 +16,24 @@
                 id="money-minus"
                 class="money minus"
             >
-                $-0.00
+                ${{ expenses }}
             </p>
         </div>
     </div>
 </template>
+
+<script setup>
+    import { defineProps } from 'vue';
+
+    const props = defineProps({
+        income: {
+            type: Number,
+            required: true,
+        },
+        expenses: {
+            type: Number,
+            required: true,
+        },
+    });
+    
+</script>

@@ -1,10 +1,10 @@
 <template>
   <Header /> 
   <div class="container">
-    <Balance :total="total" />
-    <IncomeExpenses />
+    <Balance :total="+total" />
+    <IncomeExpenses :income="+income" :expenses="+expenses"/>
     <TransactionList :transactions="transactions" />
-    <AddTransaction />
+    <AddTransaction @transactionSubmitted="handleTransactionSubmitted"/>
   </div>
 </template>
 
@@ -17,7 +17,11 @@
   import TransactionList from './components/TransactionList.vue';
   import AddTransaction from './components/AddTransaction.vue';
 
+  import { useToast } from 'vue-toastification';
+
   import { computed, ref } from 'vue';
+
+  const toast = useToast();
 
   const transactions = ref ([
     { id: 1, text: 'Flower', amount: -19.99 }, 
@@ -26,13 +30,53 @@
     { id: 4, text: 'Camera', amount: 150 },
   ]);
 
+  // get total
   // console.log(transactions);
   // console.log(transactions.value);
   const total = computed(() => {
     return transactions.value.reduce((acc, transaction) => {
       return acc + transaction.amount;
     }, 0);
+    
   });
+
+  // get income
+  const income = computed(() => {
+    return transactions.value
+    .filter((transaction) => transaction.amount > 0)
+    .reduce((acc, transaction) => {
+      return acc + transaction.amount;
+    }, 0)
+    .toFixed(2)
+  });
+
+  // get expense
+  const expenses = computed(() => {
+    return transactions.value
+    .filter((transaction) => transaction.amount < 0 )
+    .reduce((acc, transaction) => {
+      return acc + transaction.amount;
+    }, 0)
+    .toFixed(2)
+  });
+
+  // add transaction
+  const handleTransactionSubmitted = (transactionData) => {
+    transactions.value.push({
+      id: generateUniqueId(),
+      text: transactionData.text,
+      amount: transactionData.amount,
+    });
+
+    toast.success('Transaction added');
+    // console.log(generateUniqueId());
+    
+  }
+
+  // Generate unique ID
+  const generateUniqueId = () => {
+    return Math.floor(Math.random() * 1000000);
+  }
   
   // export default {
   //   components: {

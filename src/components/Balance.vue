@@ -10,6 +10,8 @@
         total: {
             type: Number,
             required: true,
-        },
+            
+        }, 
     });
+    
 </script>
