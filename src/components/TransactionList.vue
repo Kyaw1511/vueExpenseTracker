@@ -8,9 +8,10 @@
             v-for="transaction in transactions" 
             :key="transaction.id"
             :class="transaction.amount < 0 ? 'minus' : 'plus'"
+            style="text-transform: capitalize;"
         >
             {{ transaction.text }}
-            <span>$ {{ transaction.amount }} </span>
+            <span>${{ transaction.amount }} </span>
             <button 
                 @click="deleteTransaction(transaction.id)"
                 class="delete-btn"

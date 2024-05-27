@@ -70,6 +70,7 @@
       text: transactionData.text,
       amount: transactionData.amount,
     });
+    
 
     saveTransactionsToLocalStorage();
 

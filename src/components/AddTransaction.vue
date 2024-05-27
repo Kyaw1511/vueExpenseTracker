@@ -23,6 +23,8 @@
                 v-model="amount"
                 type="number"
                 id="amount"
+                step='0.01'
+                value='0.00'
                 placeholder="Enter amount..."
             >
         </div>
@@ -44,14 +46,15 @@
     const toast = useToast();
 
     const onsubmit = () => {
-        if(!text.value || !amount.value) {
+        if(!text.value|| !amount.value) {
             toast.error('Both fields must be filled');
             return;
         }
-        // console.log(text.value, amount.value);
+        console.log(text.value, amount.value);
 
         const transactionData = {
             text: text.value,
+            // text: text.value,
             amount: parseFloat(amount.value),
         }
         emit('transactionSubmitted', transactionData);
