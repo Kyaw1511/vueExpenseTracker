@@ -6,7 +6,7 @@
             <p id="money-plus"
                 class="money plus"
             >
-                ${{ income }}
+                +${{ income }}
             </p>
         </div>
         <!-- expense category -->
