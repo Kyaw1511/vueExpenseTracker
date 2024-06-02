@@ -16,7 +16,7 @@
         </div>
         <div class="form-control">
             <label for="amount">
-                >Amount <br/>
+                Amount <br/>
                 (negative - expense, positive - income)
             </label>
             <input 

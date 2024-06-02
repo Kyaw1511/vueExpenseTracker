@@ -1,8 +1,8 @@
 <template>
   <Header /> 
   <div class="container">
-    <Balance :total="+total" />
-    <IncomeExpenses :income="+income" :expenses="+expenses"/>
+    <Balance :total="total" />
+    <IncomeExpenses :income="income" :expenses="expenses"/>
     <TransactionList :transactions="transactions" @transactionDeleted="handleTransactionDeleted" />
     <AddTransaction @transactionSubmitted="handleTransactionSubmitted"/>
   </div>
@@ -39,9 +39,9 @@
   const total = computed(() => {
     return transactions.value.reduce((acc, transaction) => {
       return acc + transaction.amount;
-    }, 0);
-    
+    }, 0)
   });
+  console.log(typeof(total.value))
 
   // get income
   const income = computed(() => {
@@ -50,8 +50,9 @@
     .reduce((acc, transaction) => {
       return acc + transaction.amount;
     }, 0)
-    .toFixed(2)
+    Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(num);
   });
+  console.log(typeof(income.value));
 
   // get expense
   const expenses = computed(() => {
@@ -60,7 +61,9 @@
     .reduce((acc, transaction) => {
       return acc + transaction.amount;
     }, 0)
-    .toFixed(2)
+    Intl.NumberFormat('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2 }) .format(num);
   });
 
   // add transaction

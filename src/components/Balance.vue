@@ -11,7 +11,7 @@
             type: Number,
             required: true,
             
-        }, 
+        },  
     });
     
 </script>

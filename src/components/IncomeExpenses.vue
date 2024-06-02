@@ -16,7 +16,7 @@
                 id="money-minus"
                 class="money minus"
             >
-                ${{ expenses }}
+                -${{ expenses }}
             </p>
         </div>
     </div>
@@ -35,5 +35,4 @@
             required: true,
         },
     });
-    
 </script>
